@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Under Construction</title>
+    <style>
+        /* Modern Gradient Background */
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            overflow: hidden;
+        }
+
+        /* Glassmorphism Card Style */
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            max-width: 90%;
+            width: 500px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Timer Styles */
+        #timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .time-box {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px 20px;
+            border-radius: 10px;
+            min-width: 80px;
+        }
+
+        .number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8rem; }
+            .time-box { min-width: 60px; padding: 10px; }
+            .number { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <span class="icon">🚧</span>
+        <h1>Quiz Under Construction</h1>
+        <p>Please wait. The quiz will be accesible shortly.</p>
+        
+        <div id="timer">
+            <div class="time-box">
+                <span id="hours" class="number">00</span>
+                <span class="label">Hrs</span>
+            </div>
+            <div class="time-box">
+                <span id="minutes" class="number">00</span>
+                <span class="label">Mins</span>
+            </div>
+            <div class="time-box">
+                <span id="seconds" class="number">00</span>
+                <span class="label">Secs</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Set the target date: Today (Feb 8, 2026) at 1:00 PM Kyrgyzstan Time (GMT+6)
+        const countDownDate = new Date("2026-02-08T13:00:00+06:00").getTime();
+
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Add leading zeros
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+            // When countdown finishes
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("timer").innerHTML = "<h2>Ready to Start!</h2>";
+            }
+        }, 1000);
+    </script>
+
+</body>
+</html>
